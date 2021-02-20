@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="login-container">
+        <div class="login-box">
+            <form class="form" [formGroup]="loginForm">
+                <h2>Login</h2>
+                <mat-form-field class="field-full-width">
+                    <input name="userName" matInput placeholder="User name" #userName formControlName="userFormControl"
+                        [errorStateMatcher]="matcher">
+
+                    <mat-error *ngIf="loginForm.get('userFormControl').hasError('required')">
+                        User name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="field-full-width">
+                    <input name="password" matInput type="password" placeholder="Password" formControlName="passwordFormControl"
+                        [errorStateMatcher]="matcher">
+
+                    <mat-error *ngIf="loginForm.get('passwordFormControl').hasError('required')">
+                        Password is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="submit-btn">
+                    <button mat-stroked-button type="submit" [disabled]="loginForm.invalid" (click)="submitForm()"
+                        #tooltip="matTooltip" matTooltip="Submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

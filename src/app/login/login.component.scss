@@ -1,0 +1,39 @@
+.container {
+    height: 100%;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.login-box {
+    height: 370px;
+    width: 320px;
+    border: 1px solid #c3c3c3;
+    border-radius: 5px;
+    padding: 2rem;
+    background-color: #fff;
+}
+
+.form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+h2 {
+    margin-bottom: 2rem;
+}
+
+.field-full-width {
+    width: 100%;
+    margin: 0.5rem auto;
+}
+
+.submit-btn {
+    text-align: center;
+    margin: 1.5rem auto;
+}

@@ -1,0 +1,141 @@
+<div class="container">
+    <div class="form-container">
+        <div class="form-box">
+            <form [formGroup]="transactionForm">
+                <div class="header">
+                    <h2>Create a new Transaction</h2>
+                    <span>(All fields are mandatory)</span>
+                </div>
+                <div class="flex-box">
+                    <div class="reference">
+                        <mat-form-field class="field-full-width">
+                            <input matInput placeholder="Customer Number" #customerNo
+                                formControlName="customerNoFormControl" [errorStateMatcher]="matcher">
+
+                            <mat-error *ngIf="transactionForm.get('customerNoFormControl').hasError('required')">
+                                Customer number is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        <button mat-icon-button color="primary"
+                            [disabled]="transactionForm.get('customerNoFormControl').invalid" matTooltipPosition="below"
+                            #tooltip="matTooltip" matTooltip="Get details" (click)="getCustomerDetails()">
+                            <mat-icon>arrow_forward</mat-icon>
+                        </button>
+                    </div>
+
+                    <mat-form-field class="field-full-width">
+                        <input matInput placeholder="Customer Name" #customerName [readonly]="notFound"
+                            formControlName="nameFormControl" [errorStateMatcher]="matcher">
+
+                        <mat-error *ngIf="transactionForm.get('nameFormControl').hasError('required')">
+                            Customer name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="field-full-width">
+                        <input matInput placeholder="Reference" readonly formControlName="referenceFormControl"
+                            [errorStateMatcher]="matcher">
+
+                        <mat-error *ngIf="transactionForm.get('referenceFormControl').hasError('required')">
+                            Reference is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="flex-box">
+                    <mat-form-field class="field-full-width">
+                        <input matInput placeholder="Address" formControlName="addressFormControl"
+                            [errorStateMatcher]="matcher" [readonly]="notFound">
+
+                        <mat-error *ngIf="transactionForm.get('addressFormControl').hasError('required')">
+                            Address is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="field-full-width">
+                        <input matInput placeholder="Customer Phone Number" type="number"
+                            formControlName="phoneFormControl" [errorStateMatcher]="matcher" [readonly]="notFound">
+
+                        <mat-error *ngIf="transactionForm.get('phoneFormControl').hasError('required')">
+                            Customer phone number is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="transactionForm.get('phoneFormControl').hasError('pattern')">
+                            Only numbers are allowd
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="field-full-width">
+                        <input matInput placeholder="Transfer Amount" type="number"
+                            formControlName="transferAmountFormControl" #transferAmt [errorStateMatcher]="matcher"
+                            [readonly]="notFound">
+
+                        <mat-error *ngIf="transactionForm.get('transferAmountFormControl').hasError('required')">
+                            Transfer amount is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="transactionForm.get('transferAmountFormControl').hasError('pattern')">
+                            Only numbers are allowd
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="flex-box">
+                    <mat-form-field appearance="fill" class="select">
+                        <mat-label>Transfer Currency</mat-label>
+                        <mat-select formControlName="transferCurrencyFormControl" [disabled]="notFound">
+                            <mat-option *ngFor="let currency of currencyOptions" [value]="currency">{{currency}}
+                            </mat-option>
+                        </mat-select>
+
+                        <mat-error *ngIf="transactionForm.get('transferCurrencyFormControl').hasError('required')">
+                            Transfer currency is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="field-full-width">
+                        <input matInput placeholder="Benificiary Bank" type="text"
+                            formControlName="benificiaryBankFormControl" [errorStateMatcher]="matcher"
+                            [readonly]="notFound">
+
+                        <mat-error *ngIf="transactionForm.get('benificiaryBankFormControl').hasError('required')">
+                            Benificiary bank is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="transactionForm.get('benificiaryBankFormControl').hasError('pattern')">
+                            Only charactors are allowd
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="field-full-width">
+                        <input matInput placeholder="Benificiary Account Number" type="number"
+                            formControlName="benificiaryNoFormControl" [errorStateMatcher]="matcher"
+                            [readonly]="notFound">
+
+                        <mat-error *ngIf="transactionForm.get('benificiaryNoFormControl').hasError('required')">
+                            Benificiary account number is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="flex-row">
+                    <mat-form-field class="field-full-width">
+                        <input matInput placeholder="Payment Details" type="text"
+                            formControlName="paymentDetailsFormControl" [errorStateMatcher]="matcher"
+                            [readonly]="notFound">
+
+                        <mat-error *ngIf="transactionForm.get('paymentDetailsFormControl').hasError('required')">
+                            Account detail is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="transactionForm.get('paymentDetailsFormControl').hasError('pattern')">
+                            Only charactors are allowd
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="buttons">
+                    <button mat-stroked-button routerLink="/home" #tooltip="matTooltip"
+                        matTooltip="Go back">Back</button>
+                    <button mat-stroked-button color="grey" (click)="clearingForm()" #tooltip="matTooltip"
+                        matTooltip="Clear form">Clear</button>
+                    <button mat-flat-button color="primary" type="submit" (click)="submitTransaction()"
+                        [disabled]="transactionForm.invalid" #tooltip="matTooltip"
+                        matTooltip="Submit transaction">Proceed</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
