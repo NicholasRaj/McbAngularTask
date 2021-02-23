@@ -124,7 +124,7 @@ export class NewTransactionComponent implements OnInit {
    */
   submitTransaction() {
     let json = {
-      "id": Math.floor(1000 + Math.random() * 9000),
+      //"id": Math.floor(1000 + Math.random() * 9000),
       "reference": this.transactionForm.controls['referenceFormControl'].value,
       "transferAmount": this.transactionForm.controls['transferAmountFormControl'].value,
       "currency": this.transactionForm.controls['transferCurrencyFormControl'].value,
@@ -162,7 +162,7 @@ export class NewTransactionComponent implements OnInit {
       "number": this.transactionForm.controls['customerNoFormControl'].value,
       "address": this.transactionForm.controls['addressFormControl'].value,
       "mobile": this.transactionForm.controls['phoneFormControl'].value,
-      "id": Math.floor(1000 + Math.random() * 9000)
+      //"id": Math.floor(1000 + Math.random() * 9000)
     }
 
     this.service.ajaxCall(this.service.baseUrl + this.service.customerRecords, 'post', JSON.stringify(json)).subscribe(resp => {
