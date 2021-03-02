@@ -21,4 +21,13 @@ After successful installation of json-server, kindly run this with default port 
                                                         "transactions": []                                                          
                                                     }                                                                                   
                                                                                                                                    
+You can use any of the following login Credentials, which is mapped in the project itself.
 
+UserName: mcb
+Password: mcb@123
+
+UserName: test
+Password: test@123
+
+UserName: nick
+Password: nick@777
